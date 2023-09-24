@@ -7,3 +7,5 @@ For now I have implemented transfer of crypto by connecting metamask accounts. T
 
 As soon as you enter the website you would get a pop-up from metamask asking you to connect your wallet to the app. If you don't have metamask then you can create an account and download 
 metamask from chrome web store.
+
+(/screenshots/mainpage_metamask_prompts.png)
