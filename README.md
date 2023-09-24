@@ -3,6 +3,15 @@
 This code repository contains an app where you can play chess offline and also online by sharing the game's link. The upcoming updates will let you bet using crypto for each game and also play with a chess bot. 
 For now I have implemented transfer of crypto by connecting metamask accounts. This is still an unfinished project so chill out!
 
+##Dependencies
+
+### FRONTEND
+![image](screenshots/Frontend.png)
+
+### BACKEND
+
+![image](screenshots/Backend.png)
+
 ## Home Page
 
 As soon as you enter the website you would get a pop-up from metamask asking you to connect your wallet to the app. If you don't have metamask, you will be prompted to do so. You can create an account and download 
@@ -20,7 +29,7 @@ Click on "Play Game", you would be routed to the Game Select Page.
 
 ![](/screenshots/GameSelect.png)
 
-#Local Game Page
+# Local Game Page
 
 ![](/screenshots/LocalWhite.png)
 
@@ -28,17 +37,17 @@ Once Player 1 makes a move, the board flips and waits for Player 2 to make a mov
 
 ![](/screenshots/LocalBlack.png)
 
-#Online Game
+# Online Game
 
 If you select online game option in the Game Select Page then you will be routed to a new page which asks you to enter your name.
 
-![](/screenshots/EnterYourName.png)
+![](/screenshots/Enteryourname.png)
 
 You will be routed to a page which asks you to select a piece: white, black or random.
 
 ![](/screenshots/OnlinePieceSelect.png)
 
-You will be routed to a new GamePage with a unique id. Share this id to your friend and once your friend opens the link from another device, your game starts.
+You will be routed to a new GamePage with a link that has a unique id. Share this link to your friend and once your friend opens the link from another device, your game starts.
 
 ![](/screenshots/OnlineGameLinkShare.png)
 
