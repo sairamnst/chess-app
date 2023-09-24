@@ -11,8 +11,23 @@ For now I have implemented transfer of crypto by connecting metamask accounts. T
 ### BACKEND
 
 ![image](screenshots/Backend.png)
-![image](screenshots/hardhat.png)
+<img src="screenshots/harhat.png" height=50% width=50%"></img>  
 HARDHAT
+
+## How to use
+Download the github repository to your computer. Install node js from the internet. Go to terminal and change the directory to where you have downloaded the repository and change your directory to the client file:
+
+`cd client`
+
+Then type out:
+
+`npm install`
+
+After all the required packages are installed from the package.json, type:
+
+`npm run dev`
+
+A localhost will be created and if u go to the link, you can use the website.
 
 ## Home Page
 
