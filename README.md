@@ -11,7 +11,7 @@ For now I have implemented transfer of crypto by connecting metamask accounts. T
 ### BACKEND
 
 ![image](screenshots/Backend.png)
-<img src="screenshots/harhat.png" height=50% width=50%"></img>  
+<img src="screenshots/harhat.png" height=50% width=50%"> </img>  
 HARDHAT
 
 ## How to use
