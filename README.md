@@ -11,8 +11,8 @@ For now I have implemented transfer of crypto by connecting metamask accounts. T
 ### BACKEND
 
 ![image](screenshots/Backend.png)
-<img src="/screenshots/hardhat.png" height="50" width="50">     
-###HARDHAT
+<img src="/screenshots/hardhat.png" height="80" width="80">     
+### HARDHAT
 
 ## How to use
 Download the github repository to your computer. Install node js from the internet. Go to terminal and change the directory to where you have downloaded the repository and change your directory to the client file:
