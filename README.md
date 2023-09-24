@@ -5,7 +5,29 @@ For now I have implemented transfer of crypto by connecting metamask accounts. T
 
 ## Home Page
 
-As soon as you enter the website you would get a pop-up from metamask asking you to connect your wallet to the app. If you don't have metamask then you can create an account and download 
+As soon as you enter the website you would get a pop-up from metamask asking you to connect your wallet to the app. If you don't have metamask, you will be prompted to do so. You can create an account and download 
 metamask from chrome web store.
 
 ![mainpage metamasl prompt](/screenshots/mainpage_metamask_prompt.png)
+
+As soon as you link your metamask account you can view the webpage.
+
+![](/screenshots/Home1.png)
+![](/screenshots/Home2.png)
+![](/screenshots/Home3.png)
+
+Click on "Play Game", you would be routed to the Game Select Page.
+
+![](/screenshots/GameSelect.png)
+
+#Local Game Page
+
+![](/screenshots/LocalWhite.png)
+
+Once Player 1 makes a move, the board flips and waits for Player 2 to make a move.
+
+![](/screenshots/LocalBlack.png)
+
+#Online Game
+
+If you select online game option in the Game Select Page then you will be 
