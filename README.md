@@ -30,4 +30,18 @@ Once Player 1 makes a move, the board flips and waits for Player 2 to make a mov
 
 #Online Game
 
-If you select online game option in the Game Select Page then you will be 
+If you select online game option in the Game Select Page then you will be routed to a new page which asks you to enter your name.
+
+![](/screenshots/EnterYourName.png)
+
+You will be routed to a page which asks you to select a piece: white, black or random.
+
+![](/screenshots/OnlinePieceSelect.png)
+
+You will be routed to a new GamePage with a unique id. Share this id to your friend and once your friend opens the link from another device, your game starts.
+
+![](/screenshots/OnlineGameLinkShare.png)
+
+At the endgame, your page would look like this:
+
+![](/screenshots/Lost.png)
