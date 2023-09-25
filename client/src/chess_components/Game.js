@@ -23,12 +23,9 @@ export async function initGame(gameRefFb) {
         updateGame()
     }
     else if (gameRefFb==='computer') {
-        gameRef = null
+        gameRef = 'computer'
         gameSubject = new BehaviorSubject()
-        const savedGame = localStorage.getItem('savedGame')
-        if (savedGame) {
-            chess.load(savedGame)
-        }
+        chess.reset()
         updateGame()
     }
     else {
@@ -81,7 +78,7 @@ export async function initGame(gameRefFb) {
 }
 
 export async function resetGame() {
-    if (gameRef) {
+    if (gameRef && gameRef!='computer') {
         await updateGame(null, true)
         chess.reset()
     } else {
@@ -112,7 +109,7 @@ export function move(from, to, promotion) {
         tempMove.promotion = promotion
     }
     console.log({ tempMove, member }, chess.turn())
-    if (gameRef) {
+    if (gameRef && gameRef!='computer') {
         if (member.piece === chess.turn()) {
             const legalMove = chess.move(tempMove)
             if (legalMove) {
@@ -131,14 +128,33 @@ export function move(from, to, promotion) {
 
 async function updateGame(pendingPromotion, reset) {
     const isGameOver = chess.game_over()
-    if (gameRef) {
+    if (gameRef && gameRef!='computer') {
         const updatedData = { gameData: chess.fen(), pendingPromotion: pendingPromotion || null }
         console.log({ updateGame })
         if (reset) {
             updatedData.status = 'over'
         }
         await gameRef.update(updatedData)
-    } else {
+    } 
+    
+    else if (gameRef=='computer') {
+        if (chess.turn()=='b'){
+            const valid_moves=chess.moves()
+            const rand_index=(Math.floor(Math.random()*valid_moves.length))
+            chess.move(valid_moves[rand_index])
+        }
+        const newGame = {
+            board: chess.board(),
+            pendingPromotion,
+            isGameOver,
+            position: chess.turn(),
+            result: isGameOver ? getGameResult() : null
+        }
+        localStorage.setItem('savedGame', chess.fen())
+        gameSubject.next(newGame)
+    }
+    
+    else {
         const newGame = {
             board: chess.board(),
             pendingPromotion,
