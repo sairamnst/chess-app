@@ -67,7 +67,7 @@ function GameApp() {
               GAME OVER
               <button onClick={async () => {
                 await resetGame()
-                navigate('/')
+                navigate('/game-select')
               }}>
                 <span className="vertical-text"> NEW GAME</span>
               </button>
