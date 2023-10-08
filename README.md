@@ -2,6 +2,11 @@
 
 This code repository contains an app where you can play chess offline and also online by sharing the game's link. The upcoming updates will let you bet using crypto for each game and also play with a chess bot. 
 For now I have implemented transfer of crypto by connecting metamask accounts. This is still an unfinished project so chill out!
+I would like to thank Sebastian Lague, whose videos inspired the project very much. I won't thank my friend Prem for introducing me to chess because I can't thank a friend for being a friend, but yeah you get it right **:)** 
+
+## Update-2 08|10|23:
+
+Implemented minimax algorithm optimised with alpha-beta pruning and Move ordering. The algorithm is slow due to the code running in javascript...maybe the same code could be rewritten in c++ and run in the backend....would make it much faster. The algorithm is still buggy(problem with the minimax search function) and minor tweak to it would create a major impact in its output. For now it can capture moves and also prevent a basic Scholar's mate. More work to be done...
 
 ## Update-1 25|09|23:
 
