@@ -98,7 +98,7 @@ export function handleMove(from, to) {
     }
 
     if (!pendingPromotion) {
-        move(from, to)
+        move(from, to,false)
     }
 }
 
@@ -145,7 +145,11 @@ async function updateGame(pendingPromotion, reset) {
             //console.log(MoveGenerationTest(3,chess));
             //console.log(orderMoves(valid_moves_verbose))
             //if (!chess.isGameOver()) chess.move(valid_moves[rand_index])
+<<<<<<< HEAD
             let bestMove=bestMoveGenerator(valid_moves_verbose,3);
+=======
+            let bestMove=bestMoveGenerator(valid_moves_verbose,2);
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
             if (!chess.isGameOver()) chess.move({ from: bestMove.from, to: bestMove.to })
         }
         const newGame = {
@@ -213,7 +217,10 @@ let knightValue=300
 let bishopValue=300
 let queenValue=900
 let rookValue=500
+<<<<<<< HEAD
 let endgameMaterialStart=rookValue*2+bishopValue+knightValue;
+=======
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
 
 function getPieceValue(capturePieceType){
     if (capturePieceType==='r') {
@@ -233,9 +240,15 @@ function getPieceValue(capturePieceType){
     }
 }
 
+<<<<<<< HEAD
 function CountMaterial(chessTemp,colour) {
     let material=0
     const board=chessTemp.board()
+=======
+function CountMaterial(colour) {
+    let material=0
+    const board=chess.board()
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     for (let i=0;i<8;i++) {
         for (let j=0;j<8;j++) {
             //console.log(getPieceValue(board[i][j].type))
@@ -262,6 +275,7 @@ function CountMaterial(chessTemp,colour) {
     return material;
 }
 
+<<<<<<< HEAD
 function Evaluate(chessTemp) {
     let whiteEval=CountMaterial(chessTemp,'w')
     let blackEval=CountMaterial(chessTemp,'b')
@@ -279,6 +293,25 @@ function search(depth,tempChess,alpha,beta) {
 
     //const tempChess=new Chess();
     //tempChess.load(chess.fen());
+=======
+function Evaluate() {
+    let whiteEval=CountMaterial('w')
+    let blackEval=CountMaterial('b')
+
+    let Evaluation=whiteEval-blackEval
+    let perspective=chess.turn()==='w' ? 1 : -1
+    return Evaluation*perspective
+}
+
+function search(depth,chess,alpha,beta) {
+    if (depth==0) {
+        //return Evaluate();
+        return searchAllCaptures(alpha,beta);
+    }
+
+    const tempChess=new Chess();
+    tempChess.load(chess.fen());
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     let moves=tempChess.moves();
     if (moves.length==0) {
         if (tempChess.inCheck()) {
@@ -299,7 +332,11 @@ function search(depth,tempChess,alpha,beta) {
     return alpha;
 }
 
+<<<<<<< HEAD
 function orderMoves(tempChess,moves) {
+=======
+function orderMoves(moves) {
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     let indexScorePair=new Map();
     let move
     for (let i=0;i<moves.length;i++) {
@@ -307,6 +344,7 @@ function orderMoves(tempChess,moves) {
         let moveScoreGuess=0;
         let movePieceType=move.piece;
         let capturePieceType=move.captured;
+<<<<<<< HEAD
         tempChess.move({from:move.from,to:move.to})
         if (tempChess.inCheck()) {
             moveScoreGuess+=20;
@@ -320,6 +358,11 @@ function orderMoves(tempChess,moves) {
                 moveScoreGuess+=getPieceValue(capturePieceType)-getPieceValue(movePieceType);    
             }
             //moveScoreGuess=10*getPieceValue(capturePieceType)-getPieceValue(movePieceType);
+=======
+
+        if (capturePieceType!==undefined) {
+            moveScoreGuess=10*getPieceValue(capturePieceType)-getPieceValue(movePieceType);
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
         }
         if (move.promotion!==undefined) {
             moveScoreGuess+=getPieceValue(move.promotion);
@@ -329,29 +372,48 @@ function orderMoves(tempChess,moves) {
         let attack_square1=undefined;
         let attack_square2=undefined;
         if (String.fromCharCode(toMove.charCodeAt(0)-1)>='a' &&
+<<<<<<< HEAD
             String.fromCharCode(toMove.charCodeAt(1)-1>='1')) {
                 attack_square1=String.fromCharCode(toMove.charCodeAt(0)-1)+String.fromCharCode(toMove.charCodeAt(1)-1);
         }
         if (String.fromCharCode(toMove.charCodeAt(0)+1)<='h' &&
             String.fromCharCode(toMove.charCodeAt(1)-1>='1')) {
                 attack_square2=String.fromCharCode(toMove.charCodeAt(0)+1)+String.fromCharCode(toMove.charCodeAt(1)-1);
+=======
+            String.fromCharCode(toMove.charCodeAt(1)+1<='8')) {
+                attack_square1=String.fromCharCode(toMove.charCodeAt(0)-1)+String.fromCharCode(toMove.charCodeAt(1)+1);
+        }
+        if (String.fromCharCode(toMove.charCodeAt(0)+1)<='h' &&
+            String.fromCharCode(toMove.charCodeAt(1)+1<='8')) {
+                attack_square2=String.fromCharCode(toMove.charCodeAt(0)+1)+String.fromCharCode(toMove.charCodeAt(1)+1);
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
         }
         let attack1_piece=chess.get(attack_square1);
         let attack2_piece=chess.get(attack_square2)
         if ((attack1_piece.type==='p' && attack1_piece.color==='b')||(attack2_piece.type==='p' && attack2_piece.color==='b')) {
+<<<<<<< HEAD
             // moveScoreGuess-=getPieceValue(movePieceType);
             moveScoreGuess-=350;
         }
         if (moveScoreGuess!=undefined) indexScorePair.set(move,moveScoreGuess);
+=======
+            moveScoreGuess-=getPieceValue(movePieceType);
+        }
+        indexScorePair.set(move,moveScoreGuess);
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     }
     /*indexScorePair=new Map([...indexScorePair.entries()].sort((a, b) => b[1] - a[1]));
     const [firstKey]=indexScorePair.keys();
     return firstKey;*/
+<<<<<<< HEAD
     // console.log(indexScorePair.values())
+=======
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     return indexScorePair;
 }
 
 function bestMoveGenerator(moves,depth) {
+<<<<<<< HEAD
     const tempChess=new Chess();
     tempChess.load(chess.fen());
     let indexScore=orderMoves(tempChess,moves);
@@ -367,31 +429,60 @@ function bestMoveGenerator(moves,depth) {
     }
     indexScore=new Map([...indexScore.entries()].sort((a, b) => a[1] - b[1]));
     console.log(indexScore)
+=======
+    let indexScore=orderMoves(moves);
+    console.log(indexScore)
+    for (let [key,value] of indexScore) {
+        const tempChess=new Chess();
+        tempChess.load(chess.fen());
+        tempChess.move({from:key.from,to:key.to});
+        indexScore.set(key,value+search(depth,tempChess,-Infinity,Infinity));
+    }
+    indexScore=new Map([...indexScore.entries()].sort((a, b) => b[1] - a[1]));
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     const [firstKey]=indexScore.keys();
     return firstKey;
 }
 
+<<<<<<< HEAD
 function searchAllCaptures(tempChess,alpha,beta) {
     let evaluation=Evaluate(tempChess);
+=======
+function searchAllCaptures(alpha,beta) {
+    let evaluation=Evaluate();
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     if (evaluation>=beta) {
         return beta;
     }
     alpha=Math.max(alpha,evaluation);
+<<<<<<< HEAD
     let capture_moves_verbose=tempChess.moves({verbose:true}).filter(m=>m.captured);
     let ordered_moves=orderMoves(tempChess,capture_moves_verbose).keys();
     for (let i=0;i<ordered_moves.length;i++) {
         tempChess.move({from:ordered_moves[i].from,to:ordered_moves[i].to});
         evaluation=-searchAllCaptures(tempChess,-beta,-alpha);
+=======
+    let capture_moves_verbose=chess.moves({verbose:true}).filter(m=>m.captured);
+    for (let i=0;i<capture_moves_verbose.length;i++) {
+        const tempChess=new Chess();
+        tempChess.load(chess.fen());
+        tempChess.move({from:capture_moves_verbose[i].from,to:capture_moves_verbose[i].to});
+        evaluation=-searchAllCaptures(-beta,-alpha);
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
         tempChess.undo();
         if (evaluation>=beta) {
             return beta;
         }
         alpha=Math.max(alpha,evaluation);
+<<<<<<< HEAD
         
+=======
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
     }
     return alpha;
 }
 
+<<<<<<< HEAD
 function EndgamePhaseWeight (materialCountWithoutPawns) {
 	let multiplier = 1 / endgameMaterialStart;
 	return 1-Math.min(1,materialCountWithoutPawns*multiplier);
@@ -436,3 +527,10 @@ function forceKingToCornerEndgameEval(tempChess) {
 
     return Math.round(evaluation*10*endgameWeight);
 }
+=======
+function forceKingToCornerEndgameEval(friendlyKingSquare,opponentKingSquare,endgameWeight) {
+    let evaluation=0;
+    let opponentKingRank
+    let opponentKingFile
+}
+>>>>>>> 28795b3de08ac54573d504394b1f366744e07fc7
