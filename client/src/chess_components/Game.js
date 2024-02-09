@@ -127,7 +127,7 @@ export function move(from, to, promotion) {
 }
 
 async function updateGame(pendingPromotion, reset) {
-    const isGameOver = chess.isGameOver()
+    const isGameOver = chess.game_over()
     if (gameRef && gameRef!='computer') {
         const updatedData = { gameData: chess.fen(), pendingPromotion: pendingPromotion || null }
         console.log({ updateGame })
@@ -146,7 +146,7 @@ async function updateGame(pendingPromotion, reset) {
             //console.log(orderMoves(valid_moves_verbose))
             //if (!chess.isGameOver()) chess.move(valid_moves[rand_index])
             let bestMove=bestMoveGenerator(valid_moves_verbose,3);
-            if (!chess.isGameOver()) chess.move({ from: bestMove.from, to: bestMove.to })
+            if (!chess.game_over()) chess.move({ from: bestMove.from, to: bestMove.to })
         }
         const newGame = {
             board: chess.board(),
@@ -174,16 +174,16 @@ async function updateGame(pendingPromotion, reset) {
 
 }
 function getGameResult() {
-    if (chess.isCheckmate()) {
+    if (chess.in_checkmate()) {
         const winner = chess.turn() === "w" ? 'BLACK' : 'WHITE'
         return `CHECKMATE - WINNER - ${winner}`
     } else if (chess.isDraw()) {
         let reason = '50 - MOVES - RULE'
-        if (chess.isStalemate()) {
+        if (chess.in_stalemate()) {
             reason = 'STALEMATE'
-        } else if (chess.isThreefoldRepetition()) {
+        } else if (chess.in_threefold_repetition()) {
             reason = 'REPETITION'
-        } else if (chess.isInsufficientMaterial()) {
+        } else if (chess.insufficient_material()) {
             reason = "INSUFFICIENT MATERIAL"
         }
         return `DRAW - ${reason}`
