@@ -1,8 +1,14 @@
+# Website Link: [Click Here](https://chess-app-pink.vercel.app/) 
+
 # ONLINE WEB 3.0 CHESS-APP
 
 This code repository contains an app where you can play chess offline and also online by sharing the game's link. The upcoming updates will let you bet using crypto for each game and also play with a chess bot.   
 For now I have implemented transfer of crypto by connecting metamask accounts. This is still an unfinished project so chill out!   
 I would like to thank Sebastian Lague, whose videos inspired me very much to do this project. I won't thank my friend Prem for introducing me to chess because I can't thank a friend for being a friend, but yeah you get it right **:)**     
+
+## Update-3 10|02|24:
+
+The website is now deployed. You can check out the website using the link given on top... 
 
 ## Update-2 08|10|23:
 
