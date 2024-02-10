@@ -9,7 +9,7 @@ export default function Piece({piece:{type,color},position}) {
             return {isDragging: !!monitor.isDragging()}
         }, 
     })
-    const pieceImg=`../../src/assets/${type}_${color}.svg`
+    const pieceImg=`/${type}_${color}.svg`
     return (
         <>
             <DragPreviewImage connect={preview} src={pieceImg}/>

@@ -12,7 +12,7 @@ export default function Promote({
             <div key={i} className='promote-square'>
                 <Square black={i%3===0}>
                     <div className='piece-container' onClick={()=>move(from,to,p)}>
-                        <img src={`../../src/assets/${p}_${color}.svg`} alt="" className='piece cursor-pointer'/>
+                        <img src={`/${p}_${color}.svg`} alt="" className='piece cursor-pointer'/>
                     </div>
                 </Square>
             </div>
