@@ -187,6 +187,31 @@ body {
   border-radius: 10px;
 }
 
+/* moves table*/
+table {
+  border-collapse: collapse;
+  width: 600px;
+  height: auto;
+  text-align: center;
+}
+
+th, td {
+  padding: 8px;
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2;
+  color:#000000;
+}
+
+tr:nth-child(odd){
+  color: #f2f2f2;
+}
+
+th {
+  color: white !important;
+}
+
 /*#gameboard {
   width:320px;
   height:320px;

@@ -6,7 +6,7 @@ import { fromDocRef } from 'rxfire/firestore'
 
 let gameRef
 let member
-
+let movesvalue=[];
 const chess = new Chess()
 
 export let gameSubject
@@ -43,7 +43,7 @@ export async function initGame(gameRefFb) {
                 piece: creator.piece === 'w' ? 'b' : 'w'
             }
             const updatedMembers = [...initialGame.members, currUser]
-            await gameRefFb.update({ members: updatedMembers, status: 'ready' })
+            await gameRefFb.update({members: updatedMembers, status: 'ready' })
 
         } else if (!initialGame.members.map(m => m.uid).includes(currentUser.uid)) {
             return 'intruder'
@@ -53,7 +53,11 @@ export async function initGame(gameRefFb) {
         gameSubject = fromDocRef(gameRefFb).pipe(
             map(gameDoc => {
                 const game = gameDoc.data()
+                console.log(game)
                 const { pendingPromotion, gameData, ...restOfGame } = game
+                console.log(restOfGame.moves)
+                if (chess.history().length==0) movesvalue=[]
+                if (restOfGame.moves) movesvalue=restOfGame.moves;
                 member = game.members.find(m => m.uid === currentUser.uid)
                 const oponent = game.members.find(m => m.uid !== currentUser.uid)
                 if (gameData) {
@@ -62,6 +66,7 @@ export async function initGame(gameRefFb) {
                 const isGameOver = chess.game_over()
                 return {
                     board: chess.board(),
+                    moves:movesvalue,
                     pendingPromotion,
                     isGameOver,
                     position: member.piece,
@@ -127,10 +132,10 @@ export function move(from, to, promotion) {
 }
 
 async function updateGame(pendingPromotion, reset) {
-    const isGameOver = chess.game_over()
+    const isGameOver = chess.game_over();
     if (gameRef && gameRef!='computer') {
-        const updatedData = { gameData: chess.fen(), pendingPromotion: pendingPromotion || null }
-        console.log({ updateGame })
+        movesvalue.push(...chess.history({verbose:true}))
+        const updatedData = { moves:movesvalue,gameData: chess.fen(), pendingPromotion: pendingPromotion || null }
         if (reset) {
             updatedData.status = 'over'
         }
@@ -150,6 +155,7 @@ async function updateGame(pendingPromotion, reset) {
         }
         const newGame = {
             board: chess.board(),
+            moves:chess.history({verbose:true}),
             pendingPromotion,
             isGameOver,
             position: chess.turn(),
@@ -162,6 +168,7 @@ async function updateGame(pendingPromotion, reset) {
     else {
         const newGame = {
             board: chess.board(),
+            moves:chess.history({verbose:true}),
             pendingPromotion,
             isGameOver,
             position: chess.turn(),

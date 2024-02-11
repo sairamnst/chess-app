@@ -4,6 +4,7 @@ import { gameSubject, initGame, resetGame } from '../chess_components/Game'
 import Board from '../chess_components/Board'
 import { useParams, useNavigate } from 'react-router-dom'
 import { db } from '../firebase'
+import MovesTable from "../chess_components/MovesTable";
 
 function GameApp() {
   const [board, setBoard] = useState([])
@@ -13,6 +14,7 @@ function GameApp() {
   const [initResult, setInitResult] = useState(null)
   const [loading, setLoading] = useState(true)
   const [status, setStatus] = useState('')
+  const [moves, setMoves]= useState([])
   const [game, setGame] = useState({})
   const { id } = useParams()
   const navigate = useNavigate()
@@ -31,6 +33,7 @@ function GameApp() {
           setPosition(game.position)
           setStatus(game.status)
           setGame(game)
+          setMoves(game.moves)
         })
 
       }
@@ -79,6 +82,11 @@ function GameApp() {
             {game.member && game.member.name && <span className="tag is-link">{game.member.name}</span>}
           </div>
           {result && <p className="vertical-text">{result}</p>}
+          {status !== 'waiting' && status!=='over' && (
+            <div className="pl-10">
+              <MovesTable moves={moves} />
+            </div>
+          )}
           {status === 'waiting' && (
             <div className="notification is-link share-game">
               <strong>Share this game to continue</strong>

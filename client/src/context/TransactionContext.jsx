@@ -57,7 +57,6 @@ export const TransactionProvider= ({children})=> {
             else {
                 console.log("No accounts found.");
             }
-            console.log(accounts);
         } catch (error) {
             console.log(error);
             throw new Error("No ethereum object.")
